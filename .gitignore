@@ -132,6 +132,8 @@ proguard/
 *.swp
 
 # Keystore files
+keystore.properties
+*.p12
 
 # Google Services (e.g. APIs or Firebase)
 # google-services.json
