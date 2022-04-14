@@ -15,14 +15,14 @@
             gpg -d \
               --batch \
               --passphrase "$(echo "${{ secrets.PASSWORD }}" | base64 --decode)" \
-            "${{ secrets.KEYSTORE_P12 }}"> "keystore.p12"
+            "${KEYSTORE_P12_ASC_FILE}"> "keystore.p12"
         - run: |
             KEYSTORE_PROPERTIES_ASC_FILE="keystore_properties.asc"
             echo "${{ secrets.KEYSTORE_PROPERTIES }}">> ${KEYSTORE_PROPERTIES_ASC_FILE}
             gpg -d \
             --batch \
             --passphrase "$(echo "${{ secrets.PASSWORD }}" | base64 --decode)" \
-            "${{ secrets.KEYSTORE_PROPERTIES }}"> "keystore.properties"
+            "${KEYSTORE_PROPERTIES_ASC_FILE}"> "keystore.properties"
         - run: ./gradlew -Pversion.buildNumber="${GITHUB_RUN_NUMBER}" assembleDevelopmentRelease
         - uses: actions/upload-artifact@v3
           with:
