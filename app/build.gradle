@@ -68,10 +68,10 @@ android {
 
     flavorDimensions "version"
     productFlavors {
-        demo {
+        development {
             dimension "version"
-            applicationIdSuffix ".demo"
-            versionNameSuffix "-demo"
+            applicationIdSuffix ".dev"
+            versionNameSuffix "-dev"
         }
         
         full {

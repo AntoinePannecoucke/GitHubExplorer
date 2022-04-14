@@ -1,0 +1,27 @@
+  name: Workflow - Feature
+  on:
+    push:
+      branches:
+        - 'feature/*'
+  jobs:
+    build_apk:
+      runs-on: ubuntu-20.04
+      steps:
+        - uses: actions/checkout@v3
+        - run: chmod +x gradlew
+        - run: |
+            gpg -d \
+              --batch \
+              --passphrase "$(echo "${{ secrets.PASSWORD }}" | base64 --decode)" \
+            "${{ secrets.KEYSTORE_P12 }}"> "keystore.p12"
+        - run: |
+            gpg -d \
+            --batch \
+            --passphrase "$(echo "${{ secrets.PASSWORD }}" | base64 --decode)" \
+            "${{ secrets.KEYSTORE_PROPERTIES }}"> "keystore.properties"
+        - run: ./gradlew -Pversion.buildNumber="${GITHUB_RUN_NUMBER}" assembleDevelopmentRelease
+        - uses: actions/upload-artifact@v3
+          with:
+            name: demo-release-apk
+            path: app/build/outputs/apk/development/release/app-development-release.apk
+
