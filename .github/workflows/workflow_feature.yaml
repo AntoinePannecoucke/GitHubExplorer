@@ -10,11 +10,15 @@
         - uses: actions/checkout@v3
         - run: chmod +x gradlew
         - run: |
+            KEYSTORE_P12_ASC_FILE="keystore.asc"
+            echo "${{ secrets.KEYSTORE_P12 }}">> ${KEYSTORE_P12_ASC_FILE}
             gpg -d \
               --batch \
               --passphrase "$(echo "${{ secrets.PASSWORD }}" | base64 --decode)" \
             "${{ secrets.KEYSTORE_P12 }}"> "keystore.p12"
         - run: |
+            KEYSTORE_PROPERTIES_ASC_FILE="keystore.asc"
+            echo "${{ secrets.KEYSTORE_PROPERTIES }}">> ${KEYSTORE_PROPERTIES_ASC_FILE}
             gpg -d \
             --batch \
             --passphrase "$(echo "${{ secrets.PASSWORD }}" | base64 --decode)" \
