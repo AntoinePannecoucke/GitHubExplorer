@@ -30,11 +30,10 @@
             path: app/build/outputs/apk/development/release/app-development-release.apk
         - uses: rtCamp/action-slack-notify@v2
           env:
-            SLACK_CHANNEL: workflows
             SLACK_COLOR: ${{ job.status }} # or a specific color like 'good' or '#ff00ff'
             SLACK_ICON: https://pngimg.com/uploads/github/github_PNG40.png
             SLACK_MESSAGE: "Workflow - Feature was launch :rocket:"
             SLACK_TITLE: "Workflow - Feature"
             SLACK_USERNAME: "Antoine GitHub Action"
-            SLACK_WEBHOOK: "https://lp-iem-2021.slack.com"
+            SLACK_WEBHOOK: https://hooks.slack.com/services/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
 
