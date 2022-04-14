@@ -23,12 +23,12 @@
             --batch \
             --passphrase "$(echo "${{ secrets.PASSWORD }}" | base64 --decode)" \
             "${KEYSTORE_PROPERTIES_ASC_FILE}"> "keystore.properties"
-        - run: ./gradlew -Pversion.buildNumber="${GITHUB_RUN_NUMBER}" assembleDevelopmentRelease
+        - run: ./gradlew -Pversion.buildNumber="${GITHUB_RUN_NUMBER}" --no-daemon assembleDevelopmentRelease
         - uses: actions/upload-artifact@v3
           with:
             name: demo-release-apk
             path: app/build/outputs/apk/development/release/app-development-release.apk
-        - uses: rtCamp/action-slack-notify@v2
-          env:
-            SLACK_WEBHOOK: https://hooks.slack.com/services/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
-
+        - run: |
+            TOKEN=""
+            JSON="{\"channel\": \"workflows\", \"username\":\"Antoine GitHub Actions\", \"icon_emoji\":\"robot-face\", \"attachments\":[{\"color\":\"danger\" , \"text\": \"Feature workflow\"}]}"
+            curl -s -d "payload=${JSON}" "https://lp-iem-2021.slack.com/services/hooks/incoming-webhook?token=${TOKEN}"
