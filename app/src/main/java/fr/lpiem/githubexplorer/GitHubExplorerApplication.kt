@@ -1,7 +1,8 @@
 package fr.lpiem.githubexplorer
 
 import android.app.Application
-import fr.lpiem.githubexplorer.core.koin.KoinModules
+import fr.lpiem.githubexplorer.domain.DomainModules
+import fr.lpiem.githubexplorer.ui.UIModules
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -13,7 +14,7 @@ class GitHubExplorerApplication : Application() {
             // declare used Android context
             androidContext(this@GitHubExplorerApplication)
             // declare modules
-            modules(*KoinModules.all)
+            modules(*UIModules.all)
         }
     }
 }
