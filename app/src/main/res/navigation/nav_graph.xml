@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/userListFragment"
-        android:name="fr.lpiem.githubexplorer.UserListFragment"
+        android:name="fr.lpiem.githubexplorer.ui.user_list.UserListFragment"
         android:label="fragment_user_list"
         tools:layout="@layout/fragment_user_list" />
 </navigation>
