@@ -24,8 +24,15 @@ android {
         applicationId "fr.lpiem.githubexplorer"
         minSdk 21
         targetSdk 31
-        versionCode 1
-        versionName "1.0"
+
+        def major = Integer.parseInt(property("version.major"))
+        def minor = Integer.parseInt(property("version.minor"))
+        def patch = Integer.parseInt(property("version.patch"))
+        def buildNumber = Integer.parseInt(property("version.buildNumber"))
+
+        versionCode buildNumber
+        versionName "${major}.${minor}.${patch}-b${buildNumber}"
+
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -61,10 +68,10 @@ android {
 
     flavorDimensions "version"
     productFlavors {
-        demo {
+        development {
             dimension "version"
-            applicationIdSuffix ".demo"
-            versionNameSuffix "-demo"
+            applicationIdSuffix ".dev"
+            versionNameSuffix "-dev"
         }
         
         full {
