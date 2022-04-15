@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.CircleCropTransformation
-import fr.lpiem.githubexplorer.R
 import fr.lpiem.githubexplorer.core.model.User
 import fr.lpiem.githubexplorer.databinding.ViewHolderUserBinding
 
@@ -28,7 +27,6 @@ class UserViewHolder private constructor(
         binding.userLoginTextView.text = user?.login
         binding.userAvatarImageView.load(user?.avatar_url){
             transformations(CircleCropTransformation())
-            placeholder(R.drawable.ic_outline_image_24)
             size(200)
         }
         binding.executePendingBindings()
