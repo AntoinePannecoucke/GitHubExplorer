@@ -1,12 +1,10 @@
 package fr.lpiem.githubexplorer.data.datasource
 
-import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import fr.lpiem.githubexplorer.BuildConfig
 import fr.lpiem.githubexplorer.core.model.User
 import fr.lpiem.githubexplorer.data.networking.UserNetworkingService
-import java.lang.IllegalStateException
 
 class UserRemoteDataSourceImpl(private val userNetworkingService : UserNetworkingService) : UserRemoteDataSource {
 

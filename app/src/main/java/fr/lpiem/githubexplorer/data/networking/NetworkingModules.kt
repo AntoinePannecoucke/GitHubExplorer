@@ -31,6 +31,7 @@ object NetworkingModules {
     private val servicesModule = module {
         factory {
             get<Retrofit>().create<UserNetworkingService>()
+            get<Retrofit>().create<RepositoryNetworkingService>()
         }
     }
 

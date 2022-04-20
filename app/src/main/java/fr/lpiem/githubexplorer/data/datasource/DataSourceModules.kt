@@ -9,6 +9,10 @@ object DataSourceModules {
         single<UserRemoteDataSource> {
             UserRemoteDataSourceImpl(get())
         }
+
+        single<RepositoryRemoteDataSource> {
+            RepositoryRemoteDataSourceImpl(get())
+        }
     }
 
     val all = arrayOf(userDataSourceModule)

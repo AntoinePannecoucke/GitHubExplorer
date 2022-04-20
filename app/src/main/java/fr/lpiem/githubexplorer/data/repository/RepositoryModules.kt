@@ -8,6 +8,10 @@ object RepositoryModules {
         single<UserRepository> {
             UserRepositoryImpl(get())
         }
+
+        single<RepositoryRepository> {
+            RepositoryRepositoryImpl(get())
+        }
     }
 
     val all = arrayOf(userRepositoryModule)
