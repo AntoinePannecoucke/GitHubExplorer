@@ -8,6 +8,9 @@ object DomainModules {
         factory {
             GetAllUserUseCase(get())
         }
+        factory {
+            GetUserDetailsUseCase(get())
+        }
     }
 
     val all = arrayOf(useCaseModule)

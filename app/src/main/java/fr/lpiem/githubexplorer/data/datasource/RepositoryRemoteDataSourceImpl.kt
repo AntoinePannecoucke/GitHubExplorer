@@ -7,7 +7,7 @@ import fr.lpiem.githubexplorer.core.model.Repository
 import fr.lpiem.githubexplorer.data.networking.RepositoryNetworkingService
 
 class RepositoryRemoteDataSourceImpl(private val repositoryNetworkingService : RepositoryNetworkingService): RepositoryRemoteDataSource {
-    override suspend fun getRepo(pageNumber: Int, userId: Int): Result<Pair<Int?, List<Repository>>> {
+    override suspend fun getRepositoriesOf(pageNumber: Int, userId: Int): Result<Pair<Int?, List<Repository>>> {
         return try {
             val response = repositoryNetworkingService.getRepositoriesOfUser(userId, pageNumber)
 

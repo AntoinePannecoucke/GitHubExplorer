@@ -5,9 +5,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import fr.lpiem.githubexplorer.core.model.Repository
 import fr.lpiem.githubexplorer.data.datasource.RepositoryRemoteDataSource
-import fr.lpiem.githubexplorer.data.datasource.UserRemoteDataSource
 import fr.lpiem.githubexplorer.data.paging.RepositoryPagingSource
-import fr.lpiem.githubexplorer.data.paging.UserPagingSource
 import kotlinx.coroutines.flow.Flow
 
 class RepositoryRepositoryImpl (
@@ -15,8 +13,10 @@ class RepositoryRepositoryImpl (
 ) : RepositoryRepository {
 
     override fun getUserDetails(userId: Int): Flow<PagingData<Repository>> {
+        val pagingSource = RepositoryPagingSource(remoteDataSource)
+        pagingSource.userId = userId
         return Pager(PagingConfig(20)) {
-            RepositoryPagingSource(remoteDataSource, userId)
+            pagingSource
         }.flow
     }
 

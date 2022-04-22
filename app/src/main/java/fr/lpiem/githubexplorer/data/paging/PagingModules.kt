@@ -9,6 +9,10 @@ object PagingModules {
         single {
             UserPagingSource(get())
         }
+
+        single {
+            RepositoryPagingSource(get())
+        }
     }
 
     val all = arrayOf(pagingModule)

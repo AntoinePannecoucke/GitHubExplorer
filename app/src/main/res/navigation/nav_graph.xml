@@ -18,5 +18,9 @@
         android:id="@+id/userDetailsFragment"
         android:name="fr.lpiem.githubexplorer.ui.user_details.UserDetailsFragment"
         android:label="fragment_user_details"
-        tools:layout="@layout/fragment_user_details" />
+        tools:layout="@layout/fragment_user_details" >
+        <argument
+            android:name="userId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

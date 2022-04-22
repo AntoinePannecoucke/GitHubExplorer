@@ -7,8 +7,9 @@ import fr.lpiem.githubexplorer.data.datasource.RepositoryRemoteDataSource
 
 class RepositoryPagingSource (
     private val repositoryRemoteDataSource: RepositoryRemoteDataSource,
-    private val userId: Int
 ) : PagingSource<Int, Repository>() {
+
+    var userId : Int = 0
 
     companion object {
         private const val TAG = "RepositoryPagingSource"
