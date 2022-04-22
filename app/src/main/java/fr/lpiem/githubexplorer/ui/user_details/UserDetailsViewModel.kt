@@ -8,14 +8,22 @@ import fr.lpiem.githubexplorer.core.model.Repository
 import fr.lpiem.githubexplorer.core.model.User
 import fr.lpiem.githubexplorer.domain.GetAllUserUseCase
 import fr.lpiem.githubexplorer.domain.GetUserDetailsUseCase
+import fr.lpiem.githubexplorer.domain.GetUserUseCase
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.launch
 
 class UserDetailsViewModel(
-    useCase: GetUserDetailsUseCase
+    private val userId: Int,
+    repositoryUseCase: GetUserDetailsUseCase,
+    userUseCase: GetUserUseCase
 ) : ViewModel() {
 
-    var userId = 0
+    init {
 
-    val allRepository: Flow<PagingData<Repository>> = useCase(userId).cachedIn(viewModelScope)
+    }
+
+    val allRepository: Flow<PagingData<Repository>> = repositoryUseCase(userId).cachedIn(viewModelScope)
+    val user : Flow<User> = flow { userUseCase.invoke(userId) }
 
 }

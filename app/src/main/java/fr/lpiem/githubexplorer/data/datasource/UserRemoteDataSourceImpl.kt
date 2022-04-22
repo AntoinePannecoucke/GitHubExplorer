@@ -41,4 +41,24 @@ class UserRemoteDataSourceImpl(private val userNetworkingService : UserNetworkin
             Result.failure(t)
         }
     }
+
+    override suspend fun getUser(userId: Int) : Result<User> {
+        return try {
+            val response = userNetworkingService.getUser(userId)
+
+            if (response.isSuccessful && response.body() != null){
+
+                val user = Gson().fromJson<User>(
+                    Gson().toJson(response.body()),
+                    object : TypeToken<User>() {}.type
+                )
+
+                return Result.success(user)
+            }
+            else throw IllegalStateException(response.message())
+        }
+        catch (t: Throwable){
+            Result.failure(t)
+        }
+    }
 }
