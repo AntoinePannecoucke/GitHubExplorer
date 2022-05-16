@@ -32,6 +32,9 @@ object NetworkingModules {
         factory {
             get<Retrofit>().create<UserNetworkingService>()
         }
+        factory {
+            get<Retrofit>().create<RepositoryNetworkingService>()
+        }
     }
 
     val all = arrayOf(okHttpClientModule, retrofitModule, servicesModule)

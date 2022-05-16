@@ -6,22 +6,28 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.RecyclerView
 import fr.lpiem.githubexplorer.R
 import fr.lpiem.githubexplorer.core.model.User
+import fr.lpiem.githubexplorer.ui.user_details.UserDetailsFragmentArgs
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import retrofit2.http.POST
 
 
-class UserListFragment : Fragment() {
+class UserListFragment : Fragment(), RecyclerViewItemActions {
 
     companion object {
         private const val TAG = "UserListFragment"
     }
 
     private val viewModel: UserListViewModel by viewModel()
-    private val pagingAdapter = UserListAdapter(User.Companion)
+    private val pagingAdapter = UserListAdapter(User.Companion, this)
 
 
     override fun onCreateView(
@@ -44,6 +50,16 @@ class UserListFragment : Fragment() {
                 pagingAdapter.submitData(pagingData = it)
             }
         }
+
+    }
+
+    override fun onItemClicked(position: Int) {
+        val user = pagingAdapter.snapshot()[position]
+        if (user != null){
+            val bundle = bundleOf("userId" to user.id)
+            this.findNavController().navigate(R.id.action_userListFragment_to_userDetailsFragment, bundle)
+        }
+
     }
 
 }

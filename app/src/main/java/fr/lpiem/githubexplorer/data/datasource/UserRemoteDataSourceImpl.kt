@@ -1,12 +1,10 @@
 package fr.lpiem.githubexplorer.data.datasource
 
-import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import fr.lpiem.githubexplorer.BuildConfig
 import fr.lpiem.githubexplorer.core.model.User
 import fr.lpiem.githubexplorer.data.networking.UserNetworkingService
-import java.lang.IllegalStateException
 
 class UserRemoteDataSourceImpl(private val userNetworkingService : UserNetworkingService) : UserRemoteDataSource {
 
@@ -41,6 +39,26 @@ class UserRemoteDataSourceImpl(private val userNetworkingService : UserNetworkin
         }
         catch (t: Throwable){
             Result.failure(t)
+        }
+    }
+
+    override suspend fun getUser(userId: Int) : Result<User> {
+        try {
+            val response = userNetworkingService.getUser(userId)
+
+            if (response.isSuccessful && response.body() != null){
+
+                val user = Gson().fromJson<User>(
+                    Gson().toJson(response.body()),
+                    object : TypeToken<User>() {}.type
+                )
+
+                return Result.success(user)
+            }
+            else throw IllegalStateException(response.message())
+        }
+        catch (t: Throwable){
+            throw t
         }
     }
 }

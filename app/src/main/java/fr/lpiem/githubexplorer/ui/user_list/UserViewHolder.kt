@@ -1,6 +1,7 @@
-package fr.lpiem.githubexplorer.ui
+package fr.lpiem.githubexplorer.ui.user_list
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
@@ -9,18 +10,24 @@ import fr.lpiem.githubexplorer.core.model.User
 import fr.lpiem.githubexplorer.databinding.ViewHolderUserBinding
 
 class UserViewHolder private constructor(
-    private val binding : ViewHolderUserBinding
-) : RecyclerView.ViewHolder(binding.root) {
+    private val binding : ViewHolderUserBinding,
+    private val itemActions: RecyclerViewItemActions
+) : RecyclerView.ViewHolder(binding.root), View.OnClickListener {
     companion object {
-        fun newInstance(parent: ViewGroup) : UserViewHolder{
+        fun newInstance(parent: ViewGroup,  itemActions: RecyclerViewItemActions) : UserViewHolder {
             return UserViewHolder(
                 ViewHolderUserBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
                     false
-                )
+                ),
+                itemActions
             )
         }
+    }
+
+    init {
+        binding.root.setOnClickListener(this)
     }
 
     fun bind(user: User?){
@@ -30,5 +37,10 @@ class UserViewHolder private constructor(
             size(200)
         }
         binding.executePendingBindings()
+    }
+
+    override fun onClick(view: View?) {
+        val position = absoluteAdapterPosition
+        itemActions.onItemClicked(position)
     }
 }

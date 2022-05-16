@@ -18,4 +18,8 @@ class UserRepositoryImpl(
         }.flow
     }
 
+    override suspend fun getUser(userId: Int): User {
+        return remoteDataSource.getUser(userId).getOrThrow()
+    }
+
 }
