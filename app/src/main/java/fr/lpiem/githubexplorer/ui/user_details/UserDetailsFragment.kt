@@ -2,16 +2,20 @@ package fr.lpiem.githubexplorer.ui.user_details
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.PagerSnapHelper
+import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import coil.transform.CircleCropTransformation
 import fr.lpiem.githubexplorer.R
-import fr.lpiem.githubexplorer.ui.user_list.UserListViewModel
+import fr.lpiem.githubexplorer.core.model.Repository
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
@@ -20,6 +24,7 @@ import org.koin.core.parameter.parametersOf
 class UserDetailsFragment : Fragment() {
 
     private val viewModel: UserDetailsViewModel by viewModel { parametersOf(arguments?.getInt("userId") ?: 0)}
+    private val pagingAdapter = RepositoryListAdapter(Repository)
 
     companion object {
         private const val TAG = "UserDetailsFragment"
@@ -35,18 +40,30 @@ class UserDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d(TAG, "onViewCreated:")
+
+        val repositoriesRecyclerView = view.findViewById<RecyclerView>(R.id.user_repositories)
+        repositoriesRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        val snapHelper = PagerSnapHelper()
+        snapHelper.attachToRecyclerView(repositoriesRecyclerView)
+        repositoriesRecyclerView.adapter = pagingAdapter
 
         lifecycleScope.launchWhenStarted {
             viewModel.allRepository.collectLatest {
-
+                pagingAdapter.submitData(pagingData = it)
             }
 
-            viewModel.user.collectLatest {
-                val userAvatarImageView : ImageView = view.findViewById(R.id.user_details_avatar_image_view)
-                userAvatarImageView.load(it.avatar_url)
-            }
         }
+
+        viewModel.user.observe(viewLifecycleOwner) { user ->
+            val userAvatarImageView : ImageView = view.findViewById(R.id.user_details_avatar_image_view)
+            userAvatarImageView.load(user.avatar_url){
+                transformations(CircleCropTransformation())
+                size(500)
+            }
+            val userUsernameView : TextView = view.findViewById(R.id.user_details_login_text_view)
+            userUsernameView.text = user.login
+        }
+
 
     }
 

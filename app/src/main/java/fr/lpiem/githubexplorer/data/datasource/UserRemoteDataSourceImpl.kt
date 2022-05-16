@@ -43,7 +43,7 @@ class UserRemoteDataSourceImpl(private val userNetworkingService : UserNetworkin
     }
 
     override suspend fun getUser(userId: Int) : Result<User> {
-        return try {
+        try {
             val response = userNetworkingService.getUser(userId)
 
             if (response.isSuccessful && response.body() != null){
@@ -58,7 +58,7 @@ class UserRemoteDataSourceImpl(private val userNetworkingService : UserNetworkin
             else throw IllegalStateException(response.message())
         }
         catch (t: Throwable){
-            Result.failure(t)
+            throw t
         }
     }
 }
