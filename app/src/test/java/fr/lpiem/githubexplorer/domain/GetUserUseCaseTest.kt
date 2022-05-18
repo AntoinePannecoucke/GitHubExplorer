@@ -1,4 +1,4 @@
-package fr.lpiem.githubexplorer.data.datasource
+package fr.lpiem.githubexplorer.domain
 
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -12,24 +12,20 @@ import org.koin.test.KoinTest
 import org.koin.test.KoinTestRule
 import org.koin.test.get
 
-class UserRemoteDataSourceImplTest : KoinTest {
+class GetUserUseCaseTest : KoinTest {
 
     @get:Rule
     val koinTestRule = KoinTestRule.create {
         // Your KoinApplication instance here
-        modules(*TestDataSourceModules.all)
+        modules(*TestDomainModules.all)
     }
 
-    @Test
-    fun getUsersAtPage() {
-
-    }
 
     @Test
-    fun getUser() = runBlocking {
+    operator fun invoke() = runBlocking {
 
-        val userRemoteDataSource = get<UserRemoteDataSource>()
-        val actual = userRemoteDataSource.getUser(1).getOrNull()
+        val getUserUseCase = get<GetUserUseCase>()
+        val actual = getUserUseCase(1)
         val expected = Gson().fromJson<User>(TestResourcesManager.loadResource("json/get_user_one.json"), object : TypeToken<User>() {}.type)
 
         assertEquals(expected, actual)

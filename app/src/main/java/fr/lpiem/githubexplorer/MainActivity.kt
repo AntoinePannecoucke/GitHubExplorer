@@ -2,6 +2,7 @@ package fr.lpiem.githubexplorer
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import fr.lpiem.githubexplorer.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
