@@ -2,7 +2,7 @@ package fr.lpiem.githubexplorer.core.manager
 
 import java.io.File
 
-object TestResourcesManager {
+object ResourcesManager {
 
     /** Resources URL */
     private const val RESOURCES_URI = "src/test/java/fr/lpiem/githubexplorer/resources/"

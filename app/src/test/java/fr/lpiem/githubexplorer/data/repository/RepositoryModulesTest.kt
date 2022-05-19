@@ -5,6 +5,6 @@ import fr.lpiem.githubexplorer.data.networking.NetworkingModules
 import fr.lpiem.githubexplorer.data.paging.PagingModules
 import fr.lpiem.githubexplorer.domain.DomainModules
 
-object TestRepositoryModules {
+object RepositoryModulesTest {
     val all = arrayOf(*RepositoryModules.all, *PagingModules.all, *DataSourceModules.all, *NetworkingModules.all)
 }

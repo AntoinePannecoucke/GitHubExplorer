@@ -12,9 +12,9 @@ class UserRemoteDataSourceImpl(private val userNetworkingService : UserNetworkin
         private const val TAG = "UserRemoteDataSourceImp"
     }
 
-    override suspend fun getUsersAtPage(pageNumber: Int): Result<Pair<Int?, List<User>>> {
+    override suspend fun getUsersSince(pageNumber: Int): Result<Pair<Int?, List<User>>> {
         return try {
-            val response = userNetworkingService.getAllUsersFromPage(pageNumber)
+            val response = userNetworkingService.getAllUsersSince(pageNumber)
 
             if (response.isSuccessful && response.body() != null){
                 val link = response.headers()["Link"]

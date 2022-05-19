@@ -1,36 +1,40 @@
 package fr.lpiem.githubexplorer.data.datasource
 
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
-import fr.lpiem.githubexplorer.core.manager.TestResourcesManager
 import fr.lpiem.githubexplorer.core.model.User
+import fr.lpiem.githubexplorer.core.provider.ObjectProvider
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
 import org.koin.test.KoinTest
 import org.koin.test.KoinTestRule
-import org.koin.test.get
+import org.koin.test.inject
 
 class UserRemoteDataSourceImplTest : KoinTest {
 
     @get:Rule
     val koinTestRule = KoinTestRule.create {
         // Your KoinApplication instance here
-        modules(*TestDataSourceModules.all)
+        modules(*DataSourceModulesTest.all)
+    }
+
+    private val userRemoteDataSource by inject<UserRemoteDataSource>()
+
+    @Test
+    fun getUsersSince() = runBlocking {
+        val actual = userRemoteDataSource.getUsersSince(0).getOrNull()
+        val expected = Pair<Int, List<User>>(
+            46,
+            ObjectProvider.usersSinceZero
+        )
+        assertEquals(expected, actual)
     }
 
     @Test
-    fun getUsersAtPage() {
+    fun getUserOne() = runBlocking {
 
-    }
-
-    @Test
-    fun getUser() = runBlocking {
-
-        val userRemoteDataSource = get<UserRemoteDataSource>()
         val actual = userRemoteDataSource.getUser(1).getOrNull()
-        val expected = Gson().fromJson<User>(TestResourcesManager.loadResource("json/get_user_one.json"), object : TypeToken<User>() {}.type)
+        val expected = ObjectProvider.userOne
 
         assertEquals(expected, actual)
     }

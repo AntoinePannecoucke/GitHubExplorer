@@ -10,7 +10,7 @@ interface UserNetworkingService {
     //#region User
 
     @GET("/users")
-    suspend fun getAllUsersFromPage(
+    suspend fun getAllUsersSince(
         @Query("since") since: Int?
     ) : Response<List<User>>
 
