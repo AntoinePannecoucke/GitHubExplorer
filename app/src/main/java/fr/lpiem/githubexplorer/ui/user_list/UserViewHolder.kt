@@ -10,11 +10,11 @@ import fr.lpiem.githubexplorer.core.model.User
 import fr.lpiem.githubexplorer.databinding.ViewHolderUserBinding
 
 class UserViewHolder private constructor(
-    private val binding : ViewHolderUserBinding,
+    private val binding: ViewHolderUserBinding,
     private val itemActions: RecyclerViewItemActions
 ) : RecyclerView.ViewHolder(binding.root), View.OnClickListener {
     companion object {
-        fun newInstance(parent: ViewGroup,  itemActions: RecyclerViewItemActions) : UserViewHolder {
+        fun newInstance(parent: ViewGroup, itemActions: RecyclerViewItemActions): UserViewHolder {
             return UserViewHolder(
                 ViewHolderUserBinding.inflate(
                     LayoutInflater.from(parent.context),
@@ -30,9 +30,9 @@ class UserViewHolder private constructor(
         binding.root.setOnClickListener(this)
     }
 
-    fun bind(user: User?){
+    fun bind(user: User?) {
         binding.userLoginTextView.text = user?.login
-        binding.userAvatarImageView.load(user?.avatar_url){
+        binding.userAvatarImageView.load(user?.avatar_url) {
             transformations(CircleCropTransformation())
             size(200)
         }

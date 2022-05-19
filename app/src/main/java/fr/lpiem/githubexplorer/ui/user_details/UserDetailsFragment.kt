@@ -1,7 +1,6 @@
 package fr.lpiem.githubexplorer.ui.user_details
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,7 +22,11 @@ import org.koin.core.parameter.parametersOf
 
 class UserDetailsFragment : Fragment() {
 
-    private val viewModel: UserDetailsViewModel by viewModel { parametersOf(arguments?.getInt("userId") ?: 0)}
+    private val viewModel: UserDetailsViewModel by viewModel {
+        parametersOf(
+            arguments?.getInt("userId") ?: 0
+        )
+    }
     private val pagingAdapter = RepositoryListAdapter(Repository)
 
     companion object {
@@ -42,7 +45,8 @@ class UserDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val repositoriesRecyclerView = view.findViewById<RecyclerView>(R.id.user_repositories)
-        repositoriesRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        repositoriesRecyclerView.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         val snapHelper = PagerSnapHelper()
         snapHelper.attachToRecyclerView(repositoriesRecyclerView)
         repositoriesRecyclerView.adapter = pagingAdapter
@@ -55,12 +59,13 @@ class UserDetailsFragment : Fragment() {
         }
 
         viewModel.user.observe(viewLifecycleOwner) { user ->
-            val userAvatarImageView : ImageView = view.findViewById(R.id.user_details_avatar_image_view)
-            userAvatarImageView.load(user.avatar_url){
+            val userAvatarImageView: ImageView =
+                view.findViewById(R.id.user_details_avatar_image_view)
+            userAvatarImageView.load(user.avatar_url) {
                 transformations(CircleCropTransformation())
                 size(500)
             }
-            val userUsernameView : TextView = view.findViewById(R.id.user_details_login_text_view)
+            val userUsernameView: TextView = view.findViewById(R.id.user_details_login_text_view)
             userUsernameView.text = user.login
         }
 

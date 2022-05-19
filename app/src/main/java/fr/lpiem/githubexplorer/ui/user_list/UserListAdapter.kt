@@ -8,7 +8,7 @@ import fr.lpiem.githubexplorer.core.model.User
 class UserListAdapter(
     diffCallback: DiffUtil.ItemCallback<User>,
     private val itemActions: RecyclerViewItemActions
-) : PagingDataAdapter<User, UserViewHolder>(diffCallback){
+) : PagingDataAdapter<User, UserViewHolder>(diffCallback) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,

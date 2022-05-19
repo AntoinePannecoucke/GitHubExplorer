@@ -8,7 +8,7 @@ import fr.lpiem.githubexplorer.data.datasource.RepositoryRemoteDataSource
 import fr.lpiem.githubexplorer.data.paging.RepositoryPagingSource
 import kotlinx.coroutines.flow.Flow
 
-class RepositoryRepositoryImpl (
+class RepositoryRepositoryImpl(
     private val remoteDataSource: RepositoryRemoteDataSource
 ) : RepositoryRepository {
 

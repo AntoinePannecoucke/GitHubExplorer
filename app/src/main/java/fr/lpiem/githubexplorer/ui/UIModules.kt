@@ -11,8 +11,8 @@ object UIModules {
         viewModel {
             UserListViewModel(get())
         }
-        viewModel{
-            parameters -> UserDetailsViewModel(userId = parameters.get(), get(), get())
+        viewModel { parameters ->
+            UserDetailsViewModel(userId = parameters.get(), get(), get())
         }
     }
 

@@ -12,12 +12,12 @@ interface UserNetworkingService {
     @GET("/users")
     suspend fun getAllUsersSince(
         @Query("since") since: Int?
-    ) : Response<List<User>>
+    ): Response<List<User>>
 
     @GET("user/{userId}")
     suspend fun getUser(
         @Path("userId") userId: Int
-    ) : Response<User>
+    ): Response<User>
 
     //#endregion
 }

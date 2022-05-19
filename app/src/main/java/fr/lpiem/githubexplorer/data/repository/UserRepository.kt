@@ -6,5 +6,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface UserRepository {
     fun getPaginatedUser(): Flow<PagingData<User>>
-    suspend fun getUser(userId: Int) : User
+    suspend fun getUser(userId: Int): User
 }

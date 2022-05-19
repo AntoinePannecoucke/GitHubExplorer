@@ -12,6 +12,6 @@ interface RepositoryNetworkingService {
     suspend fun getRepositoriesOfUser(
         @Path("userId") userId: Int,
         @Query("page") page: Int?
-    ) : Response<List<Repository>>
+    ): Response<List<Repository>>
 
 }
