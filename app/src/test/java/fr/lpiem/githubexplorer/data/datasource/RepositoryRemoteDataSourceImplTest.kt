@@ -3,9 +3,8 @@ package fr.lpiem.githubexplorer.data.datasource
 import fr.lpiem.githubexplorer.core.model.Repository
 import fr.lpiem.githubexplorer.core.provider.ObjectProvider
 import kotlinx.coroutines.runBlocking
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
 import org.junit.Rule
-
 import org.junit.Test
 import org.koin.test.KoinTest
 import org.koin.test.KoinTestRule
@@ -23,7 +22,7 @@ class RepositoryRemoteDataSourceImplTest : KoinTest {
 
     @Test
     fun getRepositoriesOf() = runBlocking {
-        val actual = repositoryRemoteDataSource.getRepositoriesOf(1,2).getOrNull()
+        val actual = repositoryRemoteDataSource.getRepositoriesOf(1, 2).getOrNull()
         val expected = Pair<Int, List<Repository>>(
             2,
             ObjectProvider.userTwoRepositoriesPageOne

@@ -1,7 +1,6 @@
 package fr.lpiem.githubexplorer.data.networking
 
 import com.google.gson.GsonBuilder
-import fr.lpiem.githubexplorer.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.mockwebserver.MockWebServer

@@ -6,10 +6,12 @@ import fr.lpiem.githubexplorer.data.datasource.UserRemoteDataSource
 
 class MockUserRemoteDataSource : UserRemoteDataSource {
     override suspend fun getUsersSince(pageNumber: Int): Result<Pair<Int?, List<User>>> {
-        return Result.success(Pair(
-            46,
-            ObjectProvider.usersSinceZero
-        ))
+        return Result.success(
+            Pair(
+                46,
+                ObjectProvider.usersSinceZero
+            )
+        )
     }
 
     override suspend fun getUser(userId: Int): Result<User> {

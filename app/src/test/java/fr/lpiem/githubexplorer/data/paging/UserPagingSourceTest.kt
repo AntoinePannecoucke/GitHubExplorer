@@ -2,7 +2,6 @@ package fr.lpiem.githubexplorer.data.paging
 
 import androidx.paging.PagingSource
 import fr.lpiem.githubexplorer.core.provider.ObjectProvider
-import fr.lpiem.githubexplorer.data.datasource.mock.MockDataSourceModulesTest
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Rule

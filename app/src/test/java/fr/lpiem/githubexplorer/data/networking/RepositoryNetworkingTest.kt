@@ -31,7 +31,7 @@ class RepositoryNetworkingTest : KoinTest {
         }
         server.enqueue(expected)
 
-        val actual = source.getRepositoriesOfUser(2,1).body()
+        val actual = source.getRepositoriesOfUser(2, 1).body()
 
         assertEquals(ObjectProvider.userTwoRepositoriesPageOne, actual)
     }

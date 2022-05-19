@@ -6,5 +6,11 @@ import fr.lpiem.githubexplorer.data.paging.PagingModules
 import fr.lpiem.githubexplorer.data.repository.RepositoryModules
 
 object DomainModulesTest {
-    val all = arrayOf(*DomainModules.all, *RepositoryModules.all, *PagingModules.all, *DataSourceModules.all, *NetworkingModules.all)
+    val all = arrayOf(
+        *DomainModules.all,
+        *RepositoryModules.all,
+        *PagingModules.all,
+        *DataSourceModules.all,
+        *NetworkingModules.all
+    )
 }
