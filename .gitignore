@@ -39,7 +39,6 @@ render.experimental.xml
 *.keystore
 
 # Google Services (e.g. APIs or Firebase)
-google-services.json
 
 # Android Profiling
 *.hprof
@@ -78,7 +77,6 @@ gen-external-apklibs
 .mtj.tmp/
 
 # Package Files #
-*.jar
 *.war
 *.nar
 *.ear
@@ -132,6 +130,8 @@ proguard/
 *.swp
 
 # Keystore files
+keystore.properties
+*.p12
 
 # Google Services (e.g. APIs or Firebase)
 # google-services.json
@@ -204,8 +204,6 @@ crashlytics-build.properties
 fabric.properties
 
 ### AndroidStudio Patch ###
-
-!/gradle/wrapper/gradle-wrapper.jar
 
 # End of https://www.toptal.com/developers/gitignore/api/android,androidstudio,kotlin,git
 /.idea/assetWizardSettings.xml

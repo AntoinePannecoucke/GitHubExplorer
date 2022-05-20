@@ -1,0 +1,105 @@
+{
+  "project_info": {
+    "project_number": "1067866871369",
+    "project_id": "githubexplorer-82130",
+    "storage_bucket": "githubexplorer-82130.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1067866871369:android:7d65a7b854bb0c68f31198",
+        "android_client_info": {
+          "package_name": "fr.lpiem.githubexplorer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1067866871369-l2c8cnkctrrcqg44pcfge957ck2k7bl6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "fr.lpiem.githubexplorer",
+            "certificate_hash": "51a9315df1b952f328db184004709da8dc5df82a"
+          }
+        },
+        {
+          "client_id": "1067866871369-t6juolml8ai9m4n6ptk7hjvd2njo27kj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmvIh1FUWBCigBxnT9_9TtpwtvT0YO2VQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1067866871369-t6juolml8ai9m4n6ptk7hjvd2njo27kj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1067866871369:android:c96cefd5ef1d6d40f31198",
+        "android_client_info": {
+          "package_name": "fr.lpiem.githubexplorer.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1067866871369-t6juolml8ai9m4n6ptk7hjvd2njo27kj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmvIh1FUWBCigBxnT9_9TtpwtvT0YO2VQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1067866871369-t6juolml8ai9m4n6ptk7hjvd2njo27kj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1067866871369:android:a41e2c48c8185967f31198",
+        "android_client_info": {
+          "package_name": "fr.lpiem.githubexplorer.mock"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1067866871369-t6juolml8ai9m4n6ptk7hjvd2njo27kj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmvIh1FUWBCigBxnT9_9TtpwtvT0YO2VQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1067866871369-t6juolml8ai9m4n6ptk7hjvd2njo27kj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
