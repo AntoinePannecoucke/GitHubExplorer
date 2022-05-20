@@ -7,7 +7,7 @@
 * Feature workflow which start tests
 * Develop workflow which start tests, build apk, try to send it to firebase, and try to send slack message
 
-## Warning
+### Warning
 There is the google-services.json file on the repository, to success test action. I try my command on a Linux and that make the file, but on the github action, that won't work
 
 ## Library used
