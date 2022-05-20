@@ -18,7 +18,14 @@ class GitHubExplorerApplication : Application() {
             // declare used Android context
             androidContext(this@GitHubExplorerApplication)
             // declare modules
-            modules(*UIModules.all, *DomainModules.all, *RepositoryModules.all, *PagingModules.all, *DataSourceModules.all, *NetworkingModules.all)
+            modules(
+                *UIModules.all,
+                *DomainModules.all,
+                *RepositoryModules.all,
+                *PagingModules.all,
+                *DataSourceModules.all,
+                *NetworkingModules.all
+            )
         }
     }
 }

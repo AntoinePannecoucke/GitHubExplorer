@@ -1,9 +1,15 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
     <style name="Theme.GitHubExplorer" parent="Theme.GitHubExplorer.base">
-        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.GitHubExplorer.SmallComponent</item>
-        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.GitHubExplorer.MediumComponent</item>
-        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.GitHubExplorer.LargeComponent</item>
+        <item name="shapeAppearanceSmallComponent">
+            @style/ShapeAppearance.GitHubExplorer.SmallComponent
+        </item>
+        <item name="shapeAppearanceMediumComponent">
+            @style/ShapeAppearance.GitHubExplorer.MediumComponent
+        </item>
+        <item name="shapeAppearanceLargeComponent">
+            @style/ShapeAppearance.GitHubExplorer.LargeComponent
+        </item>
     </style>
 
     <style name="Theme.GitHubExplorer.base" parent="Theme.Material3.Light">

@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.application'
+    id 'com.google.gms.google-services'
     id 'org.jetbrains.kotlin.android'
     id 'androidx.navigation.safeargs.kotlin'
 }
@@ -76,13 +77,11 @@ android {
     productFlavors {
         development {
             dimension "version"
-            applicationIdSuffix ".dev"
             versionNameSuffix "-dev"
         }
         
         full {
             dimension "version"
-            applicationIdSuffix ".full"
             versionNameSuffix "-full"
         }
     }
@@ -93,17 +92,20 @@ def nav_version = "2.4.2"
 def paging_version = "3.1.1"
 
 dependencies {
+    implementation platform('com.google.firebase:firebase-bom:30.0.1')
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'com.google.android.material:material:1.6.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.paging:paging-common-ktx:3.0.0'
+    implementation 'androidx.paging:paging-common-ktx:3.1.1'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
+    // Koin
+    testImplementation "io.insert-koin:koin-test-junit4:$koin_version"
     implementation "io.insert-koin:koin-android:$koin_version"
 
     // Java language implementation
@@ -128,9 +130,11 @@ dependencies {
     // alternatively - without Android dependencies for tests
     testImplementation "androidx.paging:paging-common:$paging_version"
 
+    // OkHttp
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
     implementation "com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2"
     implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+    testImplementation "com.squareup.okhttp3:mockwebserver:4.9.2"
 
     implementation "io.coil-kt:coil:2.0.0-rc03"
 }

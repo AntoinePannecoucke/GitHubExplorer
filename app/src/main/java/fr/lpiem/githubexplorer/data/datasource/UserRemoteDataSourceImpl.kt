@@ -6,26 +6,28 @@ import fr.lpiem.githubexplorer.BuildConfig
 import fr.lpiem.githubexplorer.core.model.User
 import fr.lpiem.githubexplorer.data.networking.UserNetworkingService
 
-class UserRemoteDataSourceImpl(private val userNetworkingService : UserNetworkingService) : UserRemoteDataSource {
+class UserRemoteDataSourceImpl(private val userNetworkingService: UserNetworkingService) :
+    UserRemoteDataSource {
 
     companion object {
         private const val TAG = "UserRemoteDataSourceImp"
     }
 
-    override suspend fun getUsersAtPage(pageNumber: Int): Result<Pair<Int?, List<User>>> {
+    override suspend fun getUsersSince(pageNumber: Int): Result<Pair<Int?, List<User>>> {
         return try {
-            val response = userNetworkingService.getAllUsersFromPage(pageNumber)
+            val response = userNetworkingService.getAllUsersSince(pageNumber)
 
-            if (response.isSuccessful && response.body() != null){
+            if (response.isSuccessful && response.body() != null) {
                 val link = response.headers()["Link"]
                 val links = link?.split(" ")
 
-                val nextPage = links?.get(0)?.removePrefix("<" + BuildConfig.BASE_URL + "/users?since=")
-                    ?.removeSuffix(">;")?.let {
-                        Integer.parseInt(
-                            it
-                        )
-                    }
+                val nextPage =
+                    links?.get(0)?.removePrefix("<" + BuildConfig.BASE_URL + "/users?since=")
+                        ?.removeSuffix(">;")?.let {
+                            Integer.parseInt(
+                                it
+                            )
+                        }
 
 
                 val userList = Gson().fromJson<List<User>>(
@@ -34,19 +36,17 @@ class UserRemoteDataSourceImpl(private val userNetworkingService : UserNetworkin
                 )
 
                 return Result.success(Pair(nextPage, userList ?: listOf()))
-            }
-            else throw IllegalStateException(response.message())
-        }
-        catch (t: Throwable){
+            } else throw IllegalStateException(response.message())
+        } catch (t: Throwable) {
             Result.failure(t)
         }
     }
 
-    override suspend fun getUser(userId: Int) : Result<User> {
+    override suspend fun getUser(userId: Int): Result<User> {
         try {
             val response = userNetworkingService.getUser(userId)
 
-            if (response.isSuccessful && response.body() != null){
+            if (response.isSuccessful && response.body() != null) {
 
                 val user = Gson().fromJson<User>(
                     Gson().toJson(response.body()),
@@ -54,10 +54,8 @@ class UserRemoteDataSourceImpl(private val userNetworkingService : UserNetworkin
                 )
 
                 return Result.success(user)
-            }
-            else throw IllegalStateException(response.message())
-        }
-        catch (t: Throwable){
+            } else throw IllegalStateException(response.message())
+        } catch (t: Throwable) {
             throw t
         }
     }

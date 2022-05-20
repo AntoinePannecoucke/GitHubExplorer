@@ -8,7 +8,7 @@ import fr.lpiem.githubexplorer.core.model.Repository
 
 class RepositoryListAdapter(
     diffCallback: DiffUtil.ItemCallback<Repository>,
-) : PagingDataAdapter<Repository, RepositoryViewHolder>(diffCallback){
+) : PagingDataAdapter<Repository, RepositoryViewHolder>(diffCallback) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,

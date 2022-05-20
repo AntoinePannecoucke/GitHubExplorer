@@ -1,6 +1,5 @@
 package fr.lpiem.githubexplorer.data.paging
 
-import fr.lpiem.githubexplorer.domain.GetAllUserUseCase
 import org.koin.dsl.module
 
 object PagingModules {

@@ -1,11 +1,10 @@
 package fr.lpiem.githubexplorer.data.datasource
 
-import fr.lpiem.githubexplorer.data.paging.UserPagingSource
 import org.koin.dsl.module
 
 object DataSourceModules {
 
-    private val userDataSourceModule = module {
+    private val dataSourceModule = module {
         single<UserRemoteDataSource> {
             UserRemoteDataSourceImpl(get())
         }
@@ -15,6 +14,6 @@ object DataSourceModules {
         }
     }
 
-    val all = arrayOf(userDataSourceModule)
+    val all = arrayOf(dataSourceModule)
 
 }

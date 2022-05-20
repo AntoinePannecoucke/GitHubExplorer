@@ -1,0 +1,45 @@
+  name: Workflow - Develop
+  on:
+    push:
+      branches:
+        - 'develop'
+  jobs:
+    pass_tests:
+      runs-on: ubuntu-20.04
+      steps:
+        - uses: actions/checkout@v3
+        - run: chmod +x gradlew
+        - run: |
+            GOOGLE_SERVICES_FILE="app/google-services.json"
+            echo "${{ secrets.GOOGLE_SERVICES }}">> GOOGLE_SERVICES_FILE
+        - run: |
+            KEYSTORE_P12_ASC_FILE="keystore.asc"
+            echo "${{ secrets.KEYSTORE_P12 }}">> ${KEYSTORE_P12_ASC_FILE}
+            gpg -d \
+              --batch \
+              --passphrase "$(echo "${{ secrets.PASSWORD }}" | base64 --decode)" \
+            "${KEYSTORE_P12_ASC_FILE}"> "keystore.p12"
+        - run: |
+            KEYSTORE_PROPERTIES_ASC_FILE="keystore_properties.asc"
+            echo "${{ secrets.KEYSTORE_PROPERTIES }}">> ${KEYSTORE_PROPERTIES_ASC_FILE}
+            gpg -d \
+            --batch \
+            --passphrase "$(echo "${{ secrets.PASSWORD }}" | base64 --decode)" \
+            "${KEYSTORE_PROPERTIES_ASC_FILE}"> "keystore.properties"
+        - run: ./gradlew test
+        - run: ./gradlew -Pversion.buildNumber="${GITHUB_RUN_NUMBER}" --no-daemon assembleDevelopmentRelease
+        - uses: actions/upload-artifact@v3
+          with:
+            name: demo-release-apk
+            path: app/build/outputs/apk/development/release/app-development-release.apk
+        - run: FIREBASE_TOKEN=$(./ shell/decode_base64-string.sh "${{ secrets.FIREBASE_TOKEN }}")
+        - run: firebase \
+            appdistribution:distribute \
+            app/build/outputs/apk/development/release/app-development-release.apk \
+            --app "${{ secrets.FIREBASE_APP_ID }}" \
+            --token FIREBASE_TOKEN
+            --groups "all"
+        - run: |
+            TOKEN=""
+            JSON="{\"channel\": \"workflows\", \"username\":\"Antoine GitHub Actions\", \"icon_emoji\":\"robot-face\", \"attachments\":[{\"color\":\"danger\" , \"text\": \"Feature workflow\"}]}"
+            curl -s -d "payload=${JSON}" "https://lp-iem-2021.slack.com/services/hooks/incoming-webhook?token=${TOKEN}"

@@ -5,11 +5,11 @@ import androidx.paging.PagingState
 import fr.lpiem.githubexplorer.core.model.Repository
 import fr.lpiem.githubexplorer.data.datasource.RepositoryRemoteDataSource
 
-class RepositoryPagingSource (
+class RepositoryPagingSource(
     private val repositoryRemoteDataSource: RepositoryRemoteDataSource,
 ) : PagingSource<Int, Repository>() {
 
-    var userId : Int = 0
+    var userId: Int = 0
 
     companion object {
         private const val TAG = "RepositoryPagingSource"
@@ -18,7 +18,8 @@ class RepositoryPagingSource (
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Repository> {
         return try {
             val nextPageNumber = params.key ?: 1
-            val response = repositoryRemoteDataSource.getRepositoriesOf(nextPageNumber, userId).getOrNull()
+            val response =
+                repositoryRemoteDataSource.getRepositoriesOf(nextPageNumber, userId).getOrNull()
             LoadResult.Page(
                 data = response?.second ?: listOf(),
                 prevKey = null,

@@ -15,8 +15,8 @@ class UserPagingSource(
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, User> {
         return try {
-            val nextPageNumber = params.key ?: 1
-            val response = userRemoteDataSource.getUsersAtPage(nextPageNumber).getOrNull()
+            val nextSince = params.key ?: 0
+            val response = userRemoteDataSource.getUsersSince(nextSince).getOrNull()
             LoadResult.Page(
                 data = response?.second ?: listOf(),
                 prevKey = null,
