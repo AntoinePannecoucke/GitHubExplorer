@@ -7,8 +7,6 @@
     prepare:
       runs-on: ubuntu-20.04
       steps:
-        - uses: actions/checkout@v3
-        - run: chmod +x gradlew
         - run: |
             GOOGLE_SERVICES_FILE="app/google-services.json"
             echo "${{ secrets.GOOGLE_SERVICES }}"> GOOGLE_SERVICES_FILE
@@ -32,4 +30,6 @@
     pass_tests:
       runs-on: ubuntu-20.04
       steps:
+        - uses: actions/checkout@v3
+        - run: chmod +x gradlew
         - run: ./gradlew test
