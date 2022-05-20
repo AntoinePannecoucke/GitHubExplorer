@@ -10,9 +10,6 @@
         - uses: actions/checkout@v3
         - run: chmod +x gradlew
         - run: ./gradlew test
-    get_keys:
-      runs-on: ubuntu-20.04
-      steps:
         - run: |
             KEYSTORE_P12_ASC_FILE="keystore.asc"
             echo "${{ secrets.KEYSTORE_P12 }}">> ${KEYSTORE_P12_ASC_FILE}
@@ -27,17 +24,11 @@
             --batch \
             --passphrase "$(echo "${{ secrets.PASSWORD }}" | base64 --decode)" \
             "${KEYSTORE_PROPERTIES_ASC_FILE}"> "keystore.properties"
-    build_apk:
-      runs-on: ubuntu-20.04
-      steps:
         - run: ./gradlew -Pversion.buildNumber="${GITHUB_RUN_NUMBER}" --no-daemon assembleDevelopmentRelease
         - uses: actions/upload-artifact@v3
           with:
             name: demo-release-apk
             path: app/build/outputs/apk/development/release/app-development-release.apk
-    distribute:
-      runs-on: ubuntu-20.04
-      steps:
         - run: FIREBASE_TOKEN=$(./ shell/decode_base64-string.sh "${{ secrets.FIREBASE_TOKEN }}")
         - run: firebase \
             appdistribution:distribute \
@@ -45,9 +36,6 @@
             --app "${{ secrets.FIREBASE_APP_ID }}" \
             --token FIREBASE_TOKEN
             --groups "all"
-    send_message:
-      runs-on: ubuntu-20.04
-      steps:
         - run: |
             TOKEN=""
             JSON="{\"channel\": \"workflows\", \"username\":\"Antoine GitHub Actions\", \"icon_emoji\":\"robot-face\", \"attachments\":[{\"color\":\"danger\" , \"text\": \"Feature workflow\"}]}"
