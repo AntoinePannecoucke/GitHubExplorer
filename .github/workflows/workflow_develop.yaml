@@ -4,7 +4,7 @@
       branches:
         - 'develop'
   jobs:
-    pass_tests:
+    develop_tests:
       runs-on: ubuntu-20.04
       steps:
         - uses: actions/checkout@v3
@@ -32,7 +32,9 @@
           with:
             name: demo-release-apk
             path: app/build/outputs/apk/development/release/app-development-release.apk
-        - run: FIREBASE_TOKEN=$(./shell/decode_base64-string.sh "${{ secrets.FIREBASE_TOKEN }}")
+        - run: |
+            chmod +x shell/decode_base64_string.sh
+            FIREBASE_TOKEN=$(./shell/decode_base64_string.sh "${{ secrets.FIREBASE_TOKEN }}")
         - run: firebase \
             appdistribution:distribute \
             app/build/outputs/apk/development/release/app-development-release.apk \
