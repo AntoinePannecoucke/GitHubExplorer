@@ -7,6 +7,7 @@
     pass_tests:
       runs-on: ubuntu-20.04
       steps:
+        - run: chmod +x gradlew
         - run: |
             GOOGLE_SERVICES_FILE="app/google-services.json"
             echo "${{ secrets.GOOGLE_SERVICES }}"> GOOGLE_SERVICES_FILE
