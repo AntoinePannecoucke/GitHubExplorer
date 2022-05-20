@@ -41,6 +41,64 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1067866871369:android:c96cefd5ef1d6d40f31198",
+        "android_client_info": {
+          "package_name": "fr.lpiem.githubexplorer.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1067866871369-t6juolml8ai9m4n6ptk7hjvd2njo27kj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmvIh1FUWBCigBxnT9_9TtpwtvT0YO2VQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1067866871369-t6juolml8ai9m4n6ptk7hjvd2njo27kj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1067866871369:android:a41e2c48c8185967f31198",
+        "android_client_info": {
+          "package_name": "fr.lpiem.githubexplorer.mock"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1067866871369-t6juolml8ai9m4n6ptk7hjvd2njo27kj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmvIh1FUWBCigBxnT9_9TtpwtvT0YO2VQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1067866871369-t6juolml8ai9m4n6ptk7hjvd2njo27kj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"
