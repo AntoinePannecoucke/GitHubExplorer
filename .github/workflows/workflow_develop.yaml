@@ -10,7 +10,7 @@
         - uses: actions/checkout@v3
         - run: chmod +x gradlew
         - run: ./gradlew test
-    build_apk:
+    get_keys:
       runs-on: ubuntu-20.04
       steps:
         - run: |
@@ -27,6 +27,9 @@
             --batch \
             --passphrase "$(echo "${{ secrets.PASSWORD }}" | base64 --decode)" \
             "${KEYSTORE_PROPERTIES_ASC_FILE}"> "keystore.properties"
+    build_apk:
+      runs-on: ubuntu-20.04
+      steps:
         - run: ./gradlew -Pversion.buildNumber="${GITHUB_RUN_NUMBER}" --no-daemon assembleDevelopmentRelease
         - uses: actions/upload-artifact@v3
           with:
